@@ -36,6 +36,9 @@ class ViewController: UIViewController {
 //        let orientation = CGImagePropertyOrientation(rawValue: img.imageOrientation.rawValue)
         inputImage = ciImage.applyingOrientation(Int32(img.imageOrientation.rawValue))
         
+        
+        
+        
          UIGraphicsEndImageContext()
         // MARK: Uncomment this code to save photo to photo album
         // UIImageWriteToSavedPhotosAlbum(img!, nil, nil, nil)
@@ -44,6 +47,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Do any additional setup after loading the view.
+        tempImageView.layer.borderWidth = 1
+        tempImageView.layer.borderColor = UIColor(red:222/255.0, green:225/255.0, blue:227/255.0, alpha: 1.0).cgColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,6 +103,8 @@ class ViewController: UIViewController {
             drawLineFrom(fromPoint: lastPoint, toPoint: lastPoint)
         }
     }
+    
+    
 
 
 }
