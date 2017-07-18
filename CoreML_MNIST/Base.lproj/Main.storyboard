@@ -1,26 +1,69 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jGn-Ts-ZXA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="UjZ-hk-FYm">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jGn-Ts-ZXA" customClass="ViewController" customModule="CoreML_MNIST" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="JD6-Em-fQA"/>
+                        <viewControllerLayoutGuide type="bottom" id="cKV-YV-X5p"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="Amc-Il-gcB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hx2-ze-pUv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
+                                <color key="tintColor" red="0.15000000599999999" green="0.15000000599999999" blue="0.15000000599999999" alpha="1" colorSpace="deviceRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMT-ma-SHu">
+                                <rect key="frame" x="71" y="616" width="233" height="30"/>
+                                <state key="normal" title="Take Snapshot of Number"/>
+                                <connections>
+                                    <action selector="takePicture:" destination="jGn-Ts-ZXA" eventType="touchUpInside" id="f15-Tb-R2N"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgb-Pk-TWL">
+                                <rect key="frame" x="3" y="646" width="368" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="dAN-mi-QVg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Dgb-Pk-TWL" firstAttribute="leading" secondItem="Amc-Il-gcB" secondAttribute="leadingMargin" constant="-13" id="1dY-MB-6ae"/>
+                            <constraint firstItem="cKV-YV-X5p" firstAttribute="top" secondItem="Hx2-ze-pUv" secondAttribute="bottom" constant="59" id="5Xf-QR-etr"/>
+                            <constraint firstItem="yMT-ma-SHu" firstAttribute="leading" secondItem="Amc-Il-gcB" secondAttribute="leadingMargin" constant="55" id="GzB-xz-5Yv"/>
+                            <constraint firstAttribute="trailing" secondItem="Hx2-ze-pUv" secondAttribute="trailing" id="HzG-7E-YXz"/>
+                            <constraint firstItem="Hx2-ze-pUv" firstAttribute="leading" secondItem="Amc-Il-gcB" secondAttribute="leading" id="JXf-Er-gjq"/>
+                            <constraint firstItem="yMT-ma-SHu" firstAttribute="top" secondItem="Hx2-ze-pUv" secondAttribute="bottom" constant="8" id="JYQ-qz-QEg"/>
+                            <constraint firstItem="Hx2-ze-pUv" firstAttribute="top" secondItem="Amc-Il-gcB" secondAttribute="top" id="Kb7-Hu-3qO"/>
+                            <constraint firstItem="yMT-ma-SHu" firstAttribute="centerX" secondItem="Hx2-ze-pUv" secondAttribute="centerX" id="nwf-52-cJX"/>
+                            <constraint firstItem="Dgb-Pk-TWL" firstAttribute="top" secondItem="yMT-ma-SHu" secondAttribute="bottom" id="qfd-7b-cWg"/>
+                            <constraint firstItem="yMT-ma-SHu" firstAttribute="centerX" secondItem="Dgb-Pk-TWL" secondAttribute="centerX" id="s3N-SN-gyH"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="classificationLabel" destination="Dgb-Pk-TWL" id="189-b0-39b"/>
+                        <outlet property="tempImageView" destination="Hx2-ze-pUv" id="HtO-mQ-rez"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4SR-l7-aGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="776.79999999999995" y="315.29235382308849"/>
         </scene>
     </scenes>
 </document>
