@@ -33,8 +33,8 @@ class ViewController: UIViewController {
         guard let ciImage = CIImage(image: img)
             else { fatalError("can't create CIImage from UIImage") }
         
-        let orientation = CGImagePropertyOrientation(rawValue: UInt32(img.imageOrientation.rawValue))
-        inputImage = ciImage.applyingOrientation((orientation?.rawValue as? Int32)!)
+//        let orientation = CGImagePropertyOrientation(rawValue: img.imageOrientation.rawValue)
+        inputImage = ciImage.applyingOrientation(Int32(img.imageOrientation.rawValue))
         
          UIGraphicsEndImageContext()
         // MARK: Uncomment this code to save photo to photo album
@@ -49,6 +49,52 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        swiped = false
+        if let touch = touches.first as? UITouch {
+            lastPoint = touch.location(in: self.view)
+        }
+    }
+    // Allow the drawing of lines in the image view
+    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+        
+        UIGraphicsBeginImageContext(view.frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        tempImageView.image?.draw(in: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+        
+        context?.move(to: CGPoint(x: fromPoint.x, y: fromPoint.y))
+        context?.addLine(to: CGPoint(x: toPoint.x,y: toPoint.y))
+        
+        
+        context!.setLineCap(CGLineCap.round)
+        context!.setLineWidth(brushWidth)
+        context?.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+        context!.setBlendMode(CGBlendMode.normal)
+        
+        context!.strokePath()
+        
+        tempImageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        tempImageView.alpha = opacity
+        UIGraphicsEndImageContext()
+        
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        swiped = true
+        if let touch = touches.first as? UITouch {
+            let currentPoint = touch.location(in: view)
+            drawLineFrom(fromPoint: lastPoint, toPoint: currentPoint)
+            
+            lastPoint = currentPoint
+        }
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
+        
+        if !swiped {
+            // draw a single point
+            drawLineFrom(fromPoint: lastPoint, toPoint: lastPoint)
+        }
     }
 
 
